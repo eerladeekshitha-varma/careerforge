@@ -32,7 +32,11 @@ class SkillSerializer(serializers.ModelSerializer):
     class Meta:
         model = Skill
         fields = ["id", "name"]
-
+        extra_kwargs = {
+            "name": {
+                "validators": []
+            }
+        }
 
 class ProfileSerializer(serializers.ModelSerializer):
     skills = SkillSerializer(many=True, read_only=True)
