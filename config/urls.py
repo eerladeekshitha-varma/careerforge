@@ -24,6 +24,10 @@ urlpatterns = [
         TokenRefreshView.as_view(),
         name="token-refresh"
     ),
+
+    path("api/", include("jobs.urls")),
+
+    path("api/", include("applications.urls")),
 ]
 
 if settings.DEBUG:
