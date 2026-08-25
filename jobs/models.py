@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import Skill
 
 
 class Company(models.Model):
@@ -33,6 +34,13 @@ class Job(models.Model):
 
     title = models.CharField(max_length=200)
     description = models.TextField()
+
+    required_skills = models.ManyToManyField(
+        Skill,
+        blank=True,
+        related_name="jobs"
+    )
+
     location = models.CharField(max_length=100, blank=True)
 
     employment_type = models.CharField(

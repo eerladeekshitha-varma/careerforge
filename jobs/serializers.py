@@ -35,7 +35,11 @@ class JobSerializer(serializers.ModelSerializer):
             "experience_level",
             "salary_min",
             "salary_max",
-            "posted_date",
             "deadline",
+            "required_skills",
+            "posted_date",
         ]
-        read_only_fields = ["posted_date", "company_name"]
+        read_only_fields = [
+            "posted_date",
+            "company_name",
+        ]
