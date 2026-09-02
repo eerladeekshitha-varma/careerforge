@@ -72,3 +72,19 @@ class ResumeAnalysisSerializer(serializers.ModelSerializer):
             "recommendations",
             "created_at",
         ]
+
+        validators = []
+
+    def validate(self, attrs):
+        resume = attrs.get("resume")
+        job = attrs.get("job")
+
+        if ResumeAnalysis.objects.filter(
+            resume=resume,
+            job=job
+        ).exists():
+            raise serializers.ValidationError(
+                "This resume has already been analyzed for this job."
+            )
+
+        return attrs

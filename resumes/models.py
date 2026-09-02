@@ -29,28 +29,27 @@ class ResumeAnalysis(models.Model):
         on_delete=models.CASCADE,
         related_name="analyses"
     )
-
     job = models.ForeignKey(
         Job,
         on_delete=models.CASCADE,
         related_name="resume_analyses"
     )
-
-    match_score = models.DecimalField(
-        max_digits=5,
-        decimal_places=2
-    )
-
+    match_score = models.DecimalField(max_digits=5, decimal_places=2)
     matched_skills = models.JSONField(default=list)
-
     missing_skills = models.JSONField(default=list)
-
     recommendations = models.JSONField(default=list)
-
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["resume", "job"],
+                name="unique_resume_job_analysis",
+            )
+        ]
 
     def __str__(self):
         return (
             f"{self.resume.title} → "
-            f"{self.job.title} ({self.match_score}%)"
+            f"{self.job.title} ({self.match_score}%"
         )
