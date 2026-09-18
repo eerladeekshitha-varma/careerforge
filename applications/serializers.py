@@ -58,3 +58,50 @@ class ApplicationSerializer(serializers.ModelSerializer):
                 )
 
         return value
+
+    def validate_status(self, value):
+        if self.instance is None:
+            allowed_initial_statuses = [
+                Application.Status.SAVED,
+                Application.Status.APPLIED,
+            ]
+
+            if value not in allowed_initial_statuses:
+                raise serializers.ValidationError(
+                    "A new application can only have SAVED or APPLIED status."
+                )
+
+            return value
+
+        current_status = self.instance.status
+
+        allowed_transitions = {
+            Application.Status.SAVED: [
+                Application.Status.APPLIED,
+            ],
+            Application.Status.APPLIED: [
+                Application.Status.ASSESSMENT,
+                Application.Status.REJECTED,
+            ],
+            Application.Status.ASSESSMENT: [
+                Application.Status.INTERVIEW,
+                Application.Status.REJECTED,
+            ],
+            Application.Status.INTERVIEW: [
+                Application.Status.SELECTED,
+                Application.Status.REJECTED,
+            ],
+            Application.Status.SELECTED: [],
+            Application.Status.REJECTED: [],
+        }
+
+        if (
+            value != current_status
+            and value not in allowed_transitions[current_status]
+        ):
+            raise serializers.ValidationError(
+                f"Invalid status transition from "
+                f"{current_status} to {value}."
+            )
+
+        return value

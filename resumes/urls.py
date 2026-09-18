@@ -4,6 +4,7 @@ from .views import (
     ResumeListCreateView,
     ResumeDetailView,
     ResumeAnalysisListCreateView,
+    ResumeAnalysisDetailView,
 )
 
 
@@ -22,5 +23,10 @@ urlpatterns = [
         "resume-analysis/",
         ResumeAnalysisListCreateView.as_view(),
         name="resume-analysis-list-create",
+    ),
+    path(
+        "resume-analysis/<int:pk>/",
+        ResumeAnalysisDetailView.as_view(),
+        name="resume-analysis-detail",
     ),
 ]
