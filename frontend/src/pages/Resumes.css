@@ -1,0 +1,310 @@
+.resumes-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 0 40px;
+}
+
+.resumes-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.resumes-header h1 {
+  margin: 8px 0;
+  color: #111827;
+  font-size: 32px;
+}
+
+.resumes-header p:not(.eyebrow) {
+  color: #6b7280;
+}
+
+.resume-count {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.resume-count > span {
+  font-size: 28px;
+}
+
+.resume-count strong,
+.resume-count small {
+  display: block;
+}
+
+.resume-count strong {
+  color: #111827;
+  font-size: 24px;
+}
+
+.resume-count small {
+  margin-top: 3px;
+  color: #6b7280;
+}
+
+.resume-upload-card {
+  padding: 28px;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.04);
+}
+
+.resume-section-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.resume-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 12px;
+  background: #eef2ff;
+  font-size: 23px;
+}
+
+.resume-section-title h2,
+.resume-list-heading h2 {
+  margin: 0 0 6px;
+  color: #111827;
+  font-size: 21px;
+}
+
+.resume-section-title p,
+.resume-list-heading p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.resume-upload-card form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: end;
+}
+
+.resume-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.resume-form-field label {
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.resume-form-field input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  font: inherit;
+}
+
+.resume-form-field input:focus {
+  outline: 2px solid #c7d2fe;
+  border-color: #6366f1;
+}
+
+.resume-form-field small {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.resume-upload-card form > button {
+  grid-column: 1 / -1;
+  justify-self: start;
+  padding: 13px 22px;
+  border: none;
+  border-radius: 9px;
+  background: #4f46e5;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.resume-upload-card form > button:hover:not(:disabled) {
+  background: #4338ca;
+}
+
+.resume-upload-card form > button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.resume-alert {
+  margin-top: 20px;
+  padding: 13px 16px;
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+.resume-alert-error {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.resume-alert-success {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.resume-list-section {
+  margin-top: 38px;
+}
+
+.resume-list-heading {
+  margin-bottom: 20px;
+}
+
+.resume-state {
+  padding: 30px;
+  color: #6b7280;
+  text-align: center;
+}
+
+.resume-empty {
+  padding: 48px 20px;
+  border: 1px dashed #d1d5db;
+  border-radius: 16px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.resume-empty > span {
+  font-size: 38px;
+}
+
+.resume-empty h3 {
+  margin: 14px 0 8px;
+  color: #111827;
+}
+
+.resume-empty p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.resume-list {
+  display: grid;
+  gap: 14px;
+}
+
+.resume-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.resume-file-icon {
+  display: grid;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 12px;
+  background: #f3f4f6;
+  font-size: 23px;
+}
+
+.resume-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.resume-item-info h3 {
+  margin: 0 0 6px;
+  color: #111827;
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+.resume-item-info p {
+  margin: 0 0 8px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.resume-file-link {
+  margin-right: 12px;
+  color: #4f46e5;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.resume-file-link:hover {
+  text-decoration: underline;
+}
+
+.primary-resume-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 5px 9px;
+  border-radius: 20px;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.delete-resume-button {
+  padding: 9px 14px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fff;
+  color: #dc2626;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.delete-resume-button:hover {
+  background: #fef2f2;
+}
+
+@media (max-width: 700px) {
+  .resumes-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .resume-upload-card form {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-upload-card form > button {
+    grid-column: auto;
+  }
+
+  .resume-item {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .delete-resume-button {
+    margin-left: auto;
+  }
+}

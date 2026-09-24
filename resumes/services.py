@@ -1,7 +1,7 @@
 from docx import Document
 
 from .models import ResumeAnalysis
-
+from pypdf import PdfReader
 
 # Skills we currently support in CareerForge.
 # The key is the canonical Skill name used in the database.
@@ -31,40 +31,45 @@ SKILL_ALIASES = {
 
 
 def extract_resume_text(resume):
-    """
-    Extract text from a DOCX resume.
-    """
+    file_path = resume.file.path
+    file_name = resume.file.name.lower()
 
-    document = Document(resume.file.path)
+    if file_name.endswith(".pdf"):
+        reader = PdfReader(file_path)
 
-    paragraphs = []
+        text = ""
 
-    for paragraph in document.paragraphs:
-        text = paragraph.text.strip()
+        for page in reader.pages:
+            text += page.extract_text() or ""
 
-        if text:
-            paragraphs.append(text)
+        return text
 
-    return "\n".join(paragraphs)
+    elif file_name.endswith(".docx"):
+        document = Document(file_path)
 
+        text = "\n".join(
+            paragraph.text for paragraph in document.paragraphs
+        )
+
+        return text
+
+    else:
+        raise ValueError(
+            "Unsupported file format. Please upload a PDF or DOCX resume."
+        )
 
 def extract_resume_skills(resume):
-    """
-    Detect known skills from the extracted resume text.
-    """
-
     text = extract_resume_text(resume).lower()
 
-    detected_skills = set()
+    matched_skills = set()
 
-    for skill, aliases in SKILL_ALIASES.items():
+    for canonical_skill, aliases in SKILL_ALIASES.items():
         for alias in aliases:
             if alias in text:
-                detected_skills.add(skill)
+                matched_skills.add(canonical_skill)
                 break
 
-    return detected_skills
-
+    return matched_skills
 
 def analyze_resume(resume, job):
     """
